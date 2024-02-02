@@ -1,0 +1,11 @@
+version: "3"
+services:
+  workspace:
+    container_name: workspace
+    build:
+      context: .
+    command: "sleep infinity"
+    volumes:
+      - type: bind
+        source: neovim
+        target: /root/.config/nvim
