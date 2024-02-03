@@ -1,21 +1,19 @@
 FROM ubuntu:24.04
 
-RUN apt update \
-  && apt-get update \
+RUN apt-get update \
   && apt-get install software-properties-common -y \
   && add-apt-repository ppa:neovim-ppa/unstable \
   && apt-get update \
+  && apt-get install build-essential zsh wget curl -y
 
 # NOTE: Install docker ...and stuffs
 RUN apt-get install \
   docker.io \
-  neovim zsh \
-  zsh \
-  tmux \
-  build-essential -y
 
-RUN apt-get install curl wget -y
+# NOTE: Install God's stuffs
+RUN apt-get install neovim tmux -y
 
+# NOTE: Install Oh My Zsh
 RUN wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh && sh install.sh
 
 # NOTE: Install node
@@ -33,6 +31,10 @@ RUN . "$NVM_DIR/nvm.sh" && \
     nvm install $NODE_VERSION && \
     nvm use $NODE_VERSION && \
     nvm alias default $NODE_VERSION
+
+# NOTE: Copy config
+COPY neovim /root/.config/nvim
+COPY zsh/.zshrc /root/.zshrc
 
 # NOTE: Keep image alive
 CMD ["sleep", "infinity"]
