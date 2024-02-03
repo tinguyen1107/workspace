@@ -5,7 +5,17 @@ services:
     build:
       context: .
     command: "sleep infinity"
+    ports:
+      - 6070:6070
     volumes:
       - type: bind
         source: neovim
         target: /root/.config/nvim
+      - type: bind
+        source: zsh/.zshrc
+        target: /root/.zshrc
+      - workspace:/root/repos
+
+volumes:
+  workspace:
+    name: workspace
