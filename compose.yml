@@ -5,15 +5,10 @@ services:
     build:
       context: .
     command: "sleep infinity"
+    # WARN: only expose really needed ports
     ports:
-      - 6070:6070
+      - "6060:3000"
     volumes:
-      - type: bind
-        source: neovim
-        target: /root/.config/nvim
-      - type: bind
-        source: zsh/.zshrc
-        target: /root/.zshrc
       - workspace:/root/repos
 
 volumes:
