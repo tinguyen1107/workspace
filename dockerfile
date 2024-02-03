@@ -7,8 +7,7 @@ RUN apt-get update \
   && apt-get install build-essential zsh wget curl -y
 
 # NOTE: Install docker ...and stuffs
-RUN apt-get install \
-  docker.io \
+RUN apt-get install docker.io -y
 
 # NOTE: Install God's stuffs
 RUN apt-get install neovim tmux -y
@@ -35,6 +34,8 @@ RUN . "$NVM_DIR/nvm.sh" && \
 # NOTE: Copy config
 COPY neovim /root/.config/nvim
 COPY zsh/.zshrc /root/.zshrc
+
+WORKDIR /root/repos
 
 # NOTE: Keep image alive
 CMD ["sleep", "infinity"]
