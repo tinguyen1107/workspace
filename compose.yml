@@ -10,6 +10,10 @@ services:
       - "6060:3000"
     volumes:
       - workspace:/root/repos
+      # WARN: Should use volumes and generate new keys
+      - type: bind
+        source: ssh
+        target: /root/.ssh
 
 volumes:
   workspace:

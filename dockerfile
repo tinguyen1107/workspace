@@ -33,7 +33,7 @@ RUN . "$NVM_DIR/nvm.sh" && \
 
 # NOTE: Copy config
 COPY neovim /root/.config/nvim
-COPY zsh/.zshrc /root/.zshrc
+COPY zsh/ /root/
 
 WORKDIR /root/repos
 
